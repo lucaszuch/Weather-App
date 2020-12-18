@@ -12,7 +12,7 @@ body {
 }
 
 .main {
-  min-height: 90vh;
+  min-height: 100vh;
   background: #fff;
   box-shadow: 0px 13px 40px -13px rgba(0, 0, 0, 0.75);
   width: 80%;
@@ -20,8 +20,8 @@ body {
 }
 
 .title-container {
-  height: 15vh;
-  min-width: 100%;
+  min-height: 5vh;
+  width: 100%;
   background-size: cover;
   margin: 0 auto;
   display: flex;
@@ -40,12 +40,14 @@ body {
   font-size: 3rem;
   letter-spacing: 2px;
   line-height: 1.3;
+  margin-top: 1rem;
 }
 
 .title-container_subtitle {
+  font-size: 1.25rem;
   font-style: italic;
   font-weight: 100;
-  min-height: 20vh;
+  min-height: auto;
   letter-spacing: 1px;
   line-height: 1.5;
 }
@@ -74,7 +76,7 @@ input[type="text"] {
   font-weight: lighter;
   letter-spacing: 2px;
   margin-right: 20px;
-  font-size: 20px;
+  font-size: 1rem;
 }
 
 input[type="text"] {
@@ -135,74 +137,123 @@ form button:hover {
 }
 
 @media screen and (max-width: 1024px) {
+  .main {
+    min-height: 80vh;
+    background: #fff;
+    box-shadow: 0px 13px 40px -13px rgba(0, 0, 0, 0.75);
+    width: 80%;
+    margin: 25px auto;
+  }
+
+  .form-container {
+    background-color: #2c3e50;
+    min-height: 50vh;
+    width: 100%;  
+    padding-top: 50px;
+    padding-left: 50px;
+  }
+
   .title-container_title {
     font-size: 30px;
   }
+
   .title-subtitle {
     font-size: 1.5rem;
   }
+
   .form-container {
     padding-top: 30px;
   }
+
   .weather_info {
     width: unset;
     font-size: unset;
   }
+
   .weather_key {
     padding: 4px 0 4px 0;
   }
+
   input[type="text"] {
     margin-bottom: 10px;
   }
+
   button {
     padding: 4px 10px;
   }
 }
 
 @media screen and (max-width: 768px) {
+  .main {
+    min-height: 60vh;
+    background: #fff;
+    box-shadow: 0px 13px 40px -13px rgba(0, 0, 0, 0.75);
+    width: 80%;
+    margin: 25px auto;
+  }
+
+  .form-container {
+    background-color: #2c3e50;
+    min-height: 35vh;
+    width: 100%;  
+    padding-top: 50px;
+    padding-left: 50px;
+  }
+
   .title-container_title {
     font-size: 2.5rem;
   }
+
   .title-subtitle {
     font-size: 2rem;
   }
+
   .form-container {
     padding-top: 30px;
   }
+
   .weather_info {
     width: unset;
     font-size: unset;
   }
+
   .weather_key {
     padding: 4px 0 4px 0;
   }
+
   input[type="text"] {
     margin-bottom: 10px;
   }
+
   button {
     padding: 4px 10px;
   }
 }
 
-@media screen and (max-width: 700px) {
-  .title-container_title {
-    font-size: 2rem;
-  }
-  .title-subtitle {
-    display: none;
-  }
-  button {
-    padding: 2px;
-  }
-}
-
 @media screen and (max-width: 480px) {
+  .main {
+    min-height: 60vh;
+    background: #fff;
+    box-shadow: 0px 13px 40px -13px rgba(0, 0, 0, 0.75);
+    width: 80%;
+    margin: 25px auto;
+  }
+
+  .form-container {
+    background-color: #2c3e50;
+    min-height: 35vh;
+    width: 100%;  
+    padding-top: 25px;
+    padding-left: 25px;
+  }
+
   .title-container_title {
     font-size: 2rem;
   }
   .title-subtitle {
     display: none;
   }
+
   button {
     padding: 2px;
   }
