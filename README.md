@@ -1,70 +1,117 @@
-# Getting Started with Create React App
+# Weather APP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features:
+This weather app was built as a first personal experience using APIs. This webapp requests data from the openmapweather APi and returns current temperature (°C & °F), humidity, wind speed and a briafly description of the conditions. In order to create a mobile friendly interface, Bootstrap was added to the project. 
 
-## Available Scripts
+## Requisites:
+That's a react app, hit `npm start` and let it flow!!! Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-In the project directory, you can run:
+## Technologies/Frameworks:
+- React;
+- HTML;
+- CSS;
+- JS;
+- Bootstrap
 
-### `npm start`
+## How to set up:
+### Step 1:
+In the app.js, import all the required dependencies:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    import './App.css';
+    import React, {Component} from "react";
+    import 'bootstrap/dist/css/bootstrap.min.css';
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Step 2:
+Create the title and the form to receive the user input:
 
-### `npm test`
+    const Title = () => {
+    return (
+      <div>
+        <h1 className="title-container_title">Weather App</h1>
+        <h3 className="title-subtitle">
+          Get information on temperature, conditions and more for your city!
+        </h3>
+      </div>
+    )
+    }
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    const Form = ({onSearch}) => {
+    return (
+      <form onSubmit={e => onSearch(e)}>
+        <input type="text" name="city" placeholder="City"/>
+        <input type="text" name="country" placeholder="Country"/>
+        <button className="form-button btn-primary">Search</button>
+      </form>
+    )
+    }
 
-### `npm run build`
+### Step 3:
+In the Weather.js create the Weather object with the desired parameters available. It originally only display the temperature in celsius, so I've added the F conversion. It should render all the data fetched. Export the file to be used in the app.js.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    const Weather = ({
+      city,
+      country,
+      temperature,
+      humidity,
+      description,
+      wind,
+      error
+    })
+    
+ ### Step 4:
+ We set the current state of the required data to `undefined` and use a asyn function to fetch the JSON from the API. It should them set the state for the returned information.
+ 
+     class App extends Component {
+      state = {
+        temperature: undefined,
+        city: undefined,
+        country: undefined,
+        humidity: undefined,
+        description: undefined,
+        wind: undefined,
+        error: undefined
+      };
+      
+      const {main, sys, wind, name, weather} = await apiCall.json();
+        this.setState({
+          temperature: main.temp,
+          city: name,
+          country: sys.country,
+          humidity: main.humidity,
+          description: weather[0].description,
+          wind: wind.speed,
+          error: ""
+        });
+      
+### Step 5:
+At last, we render the form with the required data.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    render() {
+        return (
+          <div className="wrapper">
+            <div className="main">
+              <div className="container" style={{ width: "100%" }}>
+                <div className="row">
+                  <div className="col-xs-5 title-container">
+                    <Title />
+                  </div>
+                  <div className="col-xs-7 form-container">
+                    <Form onSearch={this.getResults} />
+                    <Weather
+                      temperature={this.state.temperature}
+                      city={this.state.city}
+                      country={this.state.country}
+                      humidity={this.state.humidity}
+                      description={this.state.description}
+                      wind={this.state.wind}
+                      error={this.state.error}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Extra notes:
+I've found a available API key, as it is still online and widely available, I haven't hidden the information.
